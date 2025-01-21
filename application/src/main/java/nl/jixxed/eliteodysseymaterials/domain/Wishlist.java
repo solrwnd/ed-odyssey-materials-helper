@@ -46,6 +46,7 @@ public class Wishlist {
                     .map(commander -> WishlistService.getWishlists(commander).getAllWishlists().stream()
                             .filter(wishlist -> wishlist != ALL)
                             .flatMap(wishlist -> wishlist.getItems().stream())
+                            .filter(OdysseyWishlistBlueprint::isVisible)
                             .toList())
                     .orElse(Collections.unmodifiableList(this.items));
         }
